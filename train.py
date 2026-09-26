@@ -17,8 +17,6 @@ import warnings
 warnings.filterwarnings("ignore", category=exceptions.ApproximationWarning)
 
 from utils.survival_metrics import CIndexMeter, IPWCIndexMeter, BrierScoreMeter
-
-# import project specific utilities
 from utils.utils import *
 from models import create_WSI_model
 from optimizers.optim_factory import create_optimizer

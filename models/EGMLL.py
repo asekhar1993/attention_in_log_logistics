@@ -189,10 +189,6 @@ class EGMLL(nn.Module):
         L_ent = -(G * (G + 1e-8).log()).sum(-1).mean()
         extra_losses = {'L_ent': L_ent}  # raw, unscaled — NLLELGE applies the weight, not here
 
-        # Load-balancing: penalizes the gate for being confident in whichever expert
-        # currently dominates (Switch-Transformer style), computed per-step so it works
-        # even at batch_size=1 — usage balances out across the dataset over many steps,
-        # not within a single batch.
         with torch.no_grad():
             hard_choice = F.one_hot(G.argmax(dim=-1), num_classes=self.E).float()
         extra_losses['L_balance'] = self.E * (hard_choice * G).sum(dim=-1).mean()  # also raw

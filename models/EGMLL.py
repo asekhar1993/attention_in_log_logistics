@@ -58,7 +58,6 @@ class EGMLL(nn.Module):
         self._debug_printed = False
         self._debug_count = 0
 
-    # --- PDF / CDF utilities (unchanged) ---
     def _get_pdf_cdf(self, alpha, beta, t):
         if torch.any(torch.isnan(alpha)) or torch.any(torch.isnan(beta)):
             alpha = torch.nan_to_num(alpha, nan=2.0)

@@ -70,9 +70,9 @@ python train.py --config configs/luad_sgcmll.yaml
 
 ## 🌡️ Final Plot
 python plot.py --config configs/luad_sgcmll.py
-<p align="center">
-  <img src="plots/luad.png" alt="Centered Image" width="500"/>
-</p>
+
+## 🌡️For expert specific heatmaps
+python plot_expert_heatmaps.py --config configs/brca_sgcmll.yaml --fold 1 --epoch 20 --slide_id TCGA-AR-A1AR-01Z-00-DX1 --split train --patch_size 224 --out_dir heatmaps/TCGA-AR-A1AR-01Z-00-DX1/ --wsi_dir wsifiles/brca --slide_ext .svs
 
 ## 📚 Acknowledgements
 Thanks Zekang Yang, Hong Liu, and Xiangdong Wang for the public access of the codebase https://github.com/yang-ze-kang/SCMIL

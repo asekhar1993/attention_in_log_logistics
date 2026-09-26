@@ -248,8 +248,6 @@ class SGCMLL(nn.Module):
                 ))
             self.attens = nn.Sequential(*layers)
 
-        # Kept even when as_backbone=True: standalone use (e.g. the original ISBI
-        # classification setup) still needs its own pooling + classifier head.
         self.amil = AMIL_layer(hidden_size, 256, dropout=dropout_rate)
         if not self.as_backbone:
             self.classifier = nn.Linear(hidden_size, n_classes)
@@ -261,7 +259,6 @@ class SGCMLL(nn.Module):
         res = {}
         B, L_in, _ = x.shape
 
-        # position in the CURRENT sequence -> index into the ORIGINAL input patch order.
         patch_order = torch.arange(L_in, device=x.device, dtype=torch.long)
 
         filter_logits = None

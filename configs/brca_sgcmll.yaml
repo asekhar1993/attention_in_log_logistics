@@ -1,0 +1,34 @@
+config_name: sgcmll
+model:
+  model_name: SurvivalEGMLL
+  E: 5
+  K: 100
+  backbone_name: SGCMLL
+  input_size: 384
+  cluster_size: 64
+  feature_weight: 0.8
+  deep: 1
+  dropout_rate: 0.25
+  dynamic_filter: True
+save_dir: logs_modified_arch_for_amil_in_egmll_in_sept3/brca
+device: cuda
+seed: 0
+batch_size: 1
+gradient_accumulation: 1
+resume: 0
+epoch: 20
+print_step: 64
+val_epoch: 1
+optimizer:
+  opt: Adam
+  loss_func: elge
+  lr: 0.0002 # original
+  weight_decay: 0.0001 # original
+datasets:
+  type: tcga-survival-egmll-wsi
+  with_coords: True
+  fold: [1,2,3,4,5]
+  root_dir: data/brca
+  wsi_file_path: wsi_annos_vit-s-dino-p16.txt
+  clinical_file_path: clinical.csv
+  folds_path: 5fold_wsi-rnaseq

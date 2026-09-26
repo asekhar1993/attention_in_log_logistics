@@ -1,0 +1,17 @@
+path of the python file :
+/home/ardhendu/miniconda3/envs/sgcmll/lib/python3.9/site-packages/cudf/api/types.py
+
+change line 464 
+#is_extension_type = pd_types.is_extension_type
+from pandas.api.types import is_extension_array_dtype as is_extension_type
+
+change line 483
+#is_categorical = pd_types.is_categorical
+from pandas.api.types import is_categorical_dtype as is_categorical
+
+path of the python file :
+/home/user/miniconda3/envs/sgcmll/lib/python3.9/site-packages/dask_cudf/backends.py
+
+line 11
+#from pandas.core.tools.datetimes import is_datetime64tz_dtype
+from pandas.api.types import is_datetime64tz_dtype

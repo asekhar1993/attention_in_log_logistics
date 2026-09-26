@@ -314,9 +314,7 @@ class SGCMLL(nn.Module):
             full_order = high_order
 
         if self.as_backbone:
-            # Patch-level features + the permutation needed to map any downstream
-            # per-patch score (attention, gradient, etc.) back to original WSI order.
-            # Callers should index a slide's (x, y) coordinate array with full_order.
+            
             return {'feat': h, 'patch_order': full_order}
 
         h_pooled, att, attn_logits = self.amil(h)

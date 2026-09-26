@@ -48,17 +48,7 @@ def set_random_seed(seed):
 
 
 def plot_risk_stratified_cohort(high_risk_data, low_risk_data, p_value, save_path=None):
-    """
-    Plot Kaplan-Meier survival curves for high-risk and low-risk groups with p-value from log-rank test.
-    high_risk_data/low_risk_data: Lists of tuples (t, c) where t is survival time and c is the
-    CENSORSHIP indicator (c=1 -> censored, c=0 -> event/death observed), matching the convention
-    used throughout the rest of this codebase (train.py, NLLELGE, etc.).
 
-    NOTE: lifelines' KaplanMeierFitter/logrank_test expect `event_observed=1` to mean the event
-    (death) happened -- the opposite convention. We invert c -> (1 - c) right before handing
-    anything to lifelines so the curves/p-value are computed correctly.
-    p_value: P-value from log-rank test to display.
-    """
     plt.figure(facecolor='white')
     plt.rcParams.update({'font.size': 28})
     sns.set_theme(style="ticks")
@@ -143,12 +133,7 @@ def plot_risk_stratified_cohort(high_risk_data, low_risk_data, p_value, save_pat
     plt.close()
 
 def compute_median_survival_time(x, y):
-    """
-    Compute the median survival time (time where survival probability drops below 50%).
-    x: Time points (list or array)
-    y: Survival probabilities (list or array, in [0, 1])
-    Returns: Median survival time or float('inf') if survival never drops below 50%.
-    """
+  
     y = np.array(y)
     x = np.array(x)
     idx = np.where(y <= 0.5)[0]

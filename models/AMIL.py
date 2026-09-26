@@ -71,7 +71,6 @@ class AMIL(nn.Module):
             self.classifier = nn.Linear(size[1], n_classes)
 
     def forward(self, x,**kwargs):
-        # print('ina mina dika')
         x = self.fc1(x)
         x, attention, attention_without_softmax = self.amil(x)
         if self.as_backbone:
